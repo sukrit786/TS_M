@@ -23,6 +23,10 @@
 
 // Express App => POST/ product => Service => Repository
 
+// TODO Integrate more services
+// ADD logger
+// Add Env specific based configurations
+
 import expressApp from "./expressApp";
 import initializeMongo from "./db";
 

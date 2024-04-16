@@ -32,6 +32,9 @@ exports.StartServer = void 0;
 // Payment -- Transaction
 // Payment -- Shipping
 // Express App => POST/ product => Service => Repository
+// TODO Integrate more services
+// ADD logger
+// Add Env specific based configurations
 const expressApp_1 = __importDefault(require("./expressApp"));
 const db_1 = __importDefault(require("./db"));
 const PORT = process.env.PORT || 3001;
