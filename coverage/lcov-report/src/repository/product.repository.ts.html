@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">36.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/22</span>
+                <span class='fraction'>11/30</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">36.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/22</span>
+                <span class='fraction'>11/30</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -85,7 +85,15 @@
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -97,36 +105,52 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { IProductRepository } from "../interface/productRepository.interface";
-import { Product } from "../models/product.model";
-import { ProductFactory } from "../routes/__test__/product.routes.test";
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Schema, Types } from "mongoose";
+import { IProductRepository } from "../interface/productRepository.interface";
+import productModel, { IProduct } from "../models/product.model";
 &nbsp;
 export class ProductRepository implements IProductRepository {
-  async <span class="fstat-no" title="function not covered" >create(data: Product): Promise&lt;Product&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const product = ProductFactory.build();</span>
-<span class="cstat-no" title="statement not covered" >    return Promise.resolve(product);</span>
+  async <span class="fstat-no" title="function not covered" >create(data: IProduct): Promise&lt;IProduct&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    let resp = await productModel.create(data);</span>
+<span class="cstat-no" title="statement not covered" >    return resp;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
-  async <span class="fstat-no" title="function not covered" >update(data: Product): Promise&lt;Product&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    throw new Error("Method not implemented.");</span>
+  async <span class="fstat-no" title="function not covered" >update(data: IProduct): Promise&lt;IProduct&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    let resp = (await productModel.findByIdAndUpdate(</span>
+<span class="cstat-no" title="statement not covered" >      data.id,</span>
+<span class="cstat-no" title="statement not covered" >      { ...data },</span>
+<span class="cstat-no" title="statement not covered" >      { new: true }</span>
+<span class="cstat-no" title="statement not covered" >    )) as IProduct;</span>
+<span class="cstat-no" title="statement not covered" >    return resp;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
-  async <span class="fstat-no" title="function not covered" >delete(id: number) {</span>
-<span class="cstat-no" title="statement not covered" >    throw new Error("Method not implemented.");</span>
+  async <span class="fstat-no" title="function not covered" >delete(id: string) {</span>
+<span class="cstat-no" title="statement not covered" >    await productModel.findByIdAndDelete(id);</span>
+<span class="cstat-no" title="statement not covered" >    return { msg: "Item deleted" };</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
-  async <span class="fstat-no" title="function not covered" >find(limit: number, offset: number): Promise&lt;Product[]&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    throw new Error("Method not implemented.");</span>
+  async <span class="fstat-no" title="function not covered" >find(limit: number, offset: number): Promise&lt;IProduct[]&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    let products = productModel.find({}).limit(limit).skip(offset);</span>
+<span class="cstat-no" title="statement not covered" >    return products;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
-  async <span class="fstat-no" title="function not covered" >findOne(id: number): Promise&lt;Product&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    throw new Error("Method not implemented.");</span>
+  async <span class="fstat-no" title="function not covered" >findOne(id: string): Promise&lt;IProduct&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    let product = (await productModel.findOne({ _id: id })) as IProduct;</span>
+<span class="cstat-no" title="statement not covered" >    return product;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -136,7 +160,7 @@ export class ProductRepository implements IProductRepository {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-04-16T04:48:01.595Z
+                at 2024-04-16T11:18:45.847Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
