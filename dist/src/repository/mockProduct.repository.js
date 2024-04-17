@@ -15,7 +15,7 @@ class MockProductRepository {
         return Promise.resolve(id);
     }
     find(limit, offset) {
-        return Promise.resolve([]);
+        return Promise.resolve({ products: [], productCount: 5 });
     }
     findOne(id) {
         if (id !== "6a66") {

@@ -21,8 +21,11 @@ export class MockProductRepository implements IProductRepository {
   delete(id: string) {
     return Promise.resolve(id);
   }
-  find(limit: number, offset: number): Promise<IProduct[]> {
-    return Promise.resolve([]);
+  find(
+    limit: number,
+    offset: number
+  ): Promise<{ products: IProduct[]; productCount: number }> {
+    return Promise.resolve({ products: [], productCount: 5 });
   }
   findOne(id: string): Promise<IProduct> {
     if (id !== "6a66") {

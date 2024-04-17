@@ -19,9 +19,13 @@ export class ProductRepository implements IProductRepository {
     await productModel.findByIdAndDelete(id);
     return { msg: "Item deleted" };
   }
-  async find(limit: number, offset: number): Promise<IProduct[]> {
-    let products = productModel.find({}).limit(limit).skip(offset);
-    return products;
+  async find(
+    limit: number,
+    offset: number
+  ): Promise<{ products: IProduct[]; productCount: number }> {
+    let count = await productModel.countDocuments({});
+    let products = await productModel.find({}).limit(limit).skip(offset);
+    return { products, productCount: count };
   }
   async findOne(id: string): Promise<IProduct> {
     let product = (await productModel.findOne({ _id: id })) as IProduct;

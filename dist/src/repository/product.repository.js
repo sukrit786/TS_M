@@ -35,8 +35,9 @@ class ProductRepository {
     }
     find(limit, offset) {
         return __awaiter(this, void 0, void 0, function* () {
-            let products = product_model_1.default.find({}).limit(limit).skip(offset);
-            return products;
+            let count = yield product_model_1.default.countDocuments({});
+            let products = yield product_model_1.default.find({}).limit(limit).skip(offset);
+            return { products, productCount: count };
         });
     }
     findOne(id) {

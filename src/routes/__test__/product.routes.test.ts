@@ -124,12 +124,14 @@ describe("Catalog Routes", () => {
       const product = ProductFactory.buildList(randomLimit);
       jest
         .spyOn(productService, "fetchProducts")
-        .mockImplementationOnce(() => Promise.resolve(product));
+        .mockImplementationOnce(() =>
+          Promise.resolve({ products: product, productCount: 5 })
+        );
       const response = await request(app)
         .get(`/products?limit=${randomLimit}&offset=0`)
         .set("Accept", "application/json");
       expect(response.status).toBe(200);
-      expect(response.body).toEqual(product);
+      expect(response.body).toEqual({ products: product, productCount: 5 });
     });
   });
 

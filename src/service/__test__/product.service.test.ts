@@ -118,12 +118,14 @@ describe("productService", () => {
       const products = productFactory.buildList(randomLimit);
       jest
         .spyOn(repository, "find")
-        .mockImplementationOnce(() => Promise.resolve(products));
+        .mockImplementationOnce(() =>
+          Promise.resolve({ products: products, productCount: 5 })
+        );
 
       const result = await service.fetchProducts(randomLimit, 0);
 
-      expect(result.length).toBe(randomLimit);
-      expect(result).toMatchObject(products);
+      expect(result.products.length).toBe(randomLimit);
+      expect(result).toMatchObject({ products: products, productCount: 5 });
     });
   });
 
